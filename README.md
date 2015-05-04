@@ -1,1 +1,1 @@
-# Linux dotfiles.
+# My basic linux dotfiles. 
