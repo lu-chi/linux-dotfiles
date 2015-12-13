@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-# script to install linux dotfiles
+# script to install dotfiles
 
-dots=($(ls -1 aliases))
+in_f="aliases"
+bckp_f=".dotfiles-backup"
+dots=($(ls -1 $in_f))
 
-backup_olds() {
-    fbckp=".dotfiles-backup"
+backup() {
+    fbckp=$1
     mkdir ${fbckp}
     for i in ${dots[@]}
     do 
@@ -14,26 +16,21 @@ backup_olds() {
 }
 
 check_os() {
-    return $(uname -a)
-}
-
-install_dots() {
-    echo ""
+    echo $(uname -r)
 }
 
 link_dots() {
     for i in ${dots[@]}
     do
-        ln -s $i ~/.$i
+        ln -s $in_f/$i ~/.$i
     done
 }
 
-test_f() {
-    for i in ${dots[@]}
-    do
-        echo $i
-    done
+main() {
+    backup $bckp_f
+    link_dots
 }
 
+main 
 
 #~end
