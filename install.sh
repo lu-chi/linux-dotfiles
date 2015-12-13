@@ -2,33 +2,38 @@
 
 # script to install linux dotfiles
 
-dots=(bash_aliases \
-        tmux.conf \
-        vimrc \
-)
+dots=($(ls -1 aliases))
 
-function backup_olds {
+backup_olds() {
     fbckp=".dotfiles-backup"
     mkdir ${fbckp}
-    cp .bashrc .bash_aliases ${fbckp}
+    for i in ${dots[@]}
+    do 
+        find ~ -name ".$i" -exec cp {} ${fbckp} \; 
+    done 
 }
 
-function check_os {
+check_os() {
     return $(uname -a)
 }
 
-function install_dots {
-
+install_dots() {
+    echo ""
 }
 
-function link_dots {
-    for i in $dots[#i]
+link_dots() {
+    for i in ${dots[@]}
     do
-        ln -s bash_aliases ~/.bash_aliases
-        ln -s tmux.conf ~/.tmux.conf
-        ln -s vimrc ~/.vimrc
+        ln -s $i ~/.$i
+    done
+}
+
+test_f() {
+    for i in ${dots[@]}
+    do
+        echo $i
     done
 }
 
 
-
+#~end
