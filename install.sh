@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
-# script to install dotfiles
+# dotfiles installer
+# - backup existing dots
+# - link installed dots inside user's home directory
 
 in_f="aliases"
 bckp_f=".dotfiles-backup"
 dots=($(ls -1 $in_f))
 
-backup() {
+# backup existing dotfiles 
+# into .dotfiles-backup dir
+function backup() {
     fbckp=$1
     mkdir ${fbckp}
     for i in ${dots[@]}
@@ -15,22 +19,22 @@ backup() {
     done 
 }
 
-check_os() {
-    echo $(uname -r)
-}
-
-link_dots() {
+# symlink new dotfiles
+# into the user's home dir
+function link_dots() {
     for i in ${dots[@]}
     do
         ln -s $in_f/$i ~/.$i
     done
 }
 
-main() {
+# call both functions
+function main() {
     backup $bckp_f
     link_dots
 }
 
+# call main
 main 
 
 #~end
