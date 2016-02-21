@@ -4,7 +4,6 @@
 #
 ################################################
 
-
 function get_ip_details() { ifconfig $1 | grep inet | grep -v 'inet6'; }
 
 function reload_profile() { clear; echo "[+] Reloading user profile."; source ~/.bash_profile; }
@@ -15,20 +14,17 @@ function better_rm() {
     exit 0
 }
 
-
 function set_proxy() {
     _url=$1
     export http_proxy=${_url}
     export https_proxy=${_url}
 }
 
-
 function genpasswd() {
     local l=$1
     [ "$l" == "" ] && l=16
     tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
 }
-
 
 function getip() {
     $ exec 3<> /dev/tcp/icanhazip.com/80 && # open connection
@@ -77,8 +73,9 @@ alias rd='rm -rf'
 alias tl='tmux ls'
 alias ta='tmux a '
 
-# python
+# Python ipython notebook
 alias ipy='ipython'
+alias pynb='ipython notebook'
 
 # network
 alias ipconfig='ifconfig '
@@ -88,7 +85,6 @@ alias connections='cat ~/.ssh/config'
 
 # ssh connection aliases
 # alias alias_name='ssh server_name'
-
 
 ##################################################
 #
@@ -113,33 +109,27 @@ alias vssh='vagrant ssh'
 alias vbox='vagrant box '
 alias vlist='vbox list'
 
-# alias <any-other-project>='su - <any-other-project>'
-
-
-# Python ipython notebook
-alias pynb='ipython notebook'
-
-
 ##################################################
 #
 # apt/yum/pkg stuff
 #
 ##################################################
 
+# Debian/Ubuntu
 alias aptu='apt-get update' # apt update
 alias aptg='apt-get upgrade' # apt upgrade
 alias aptd='apt-get dist-upgrade' # apt dist-upgrade
 alias apts='apt-cache search ' # apt search
 alias apti='apt-get install ' # apt install
 
-alias yl='yum list installed'
-alias ys='yum search '
-alias yi='yum install'
-
 alias pinfo='pkginfo '
 alias padd='pkg-add -u '
 alias pdel='pkgrm '
 
+# RHEL/CentOS/Fedora
+alias yl='yum list installed'
+alias ys='yum search '
+alias yi='yum install'
  
 ##################################################
 #
@@ -157,19 +147,16 @@ alias gd='git diff'
 alias go='git checkout '
 alias gk='gitk --all&'
 alias gx='gitx --all'
-
 alias got='git '
 alias get='git '
 alias gut='git '
-
 alias graph='git log --graph --oneline --all'
 
 alias push='git push'
 alias clone='git clone'
 alias gcom='git commit -m'
 
+# alias <any-other-project>='su - <any-other-project>'
 
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
-
-
