@@ -15,7 +15,7 @@ function backup() {
     mkdir ${fbckp}
     for i in ${dots[@]}
     do 
-        find ~ -name ".$i" -exec cp {} ${fbckp} \; 
+        find ~ -name ".$i" -exec mv {} ${fbckp} \; 
     done 
 }
 
@@ -24,6 +24,7 @@ function backup() {
 function link_dots() {
     cp -r $in_f $HOME
     mv $in_f .$in_f
+    rm -rf $in_f
     for i in ${dots[@]}
     do
         ln -s .$in_f/$i ~/.$i
