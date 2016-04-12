@@ -22,9 +22,11 @@ function backup() {
 # symlink new dotfiles
 # into the user's home dir
 function link_dots() {
+    cp -r $in_f $HOME
+    mv $in_f .$in_f
     for i in ${dots[@]}
     do
-        ln -s $in_f/$i ~/.$i
+        ln -s .$in_f/$i ~/.$i
     done
 }
 
