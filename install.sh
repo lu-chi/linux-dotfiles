@@ -12,10 +12,10 @@ dots=($(ls -1 $in_f))
 # into .dotfiles-backup dir
 function backup() {
     fbckp=$1
-    mkdir ${fbckp}
+    mkdir $HOME/${fbckp}
     for i in ${dots[@]}
     do 
-        find ~ -name ".$i" -exec mv {} ${fbckp} \; 
+        find ~ -name ".$i" -exec mv {} $HOME/${fbckp} \; 
     done 
 }
 
@@ -23,7 +23,7 @@ function backup() {
 # into the user's home dir
 function link_dots() {
     cp -r $in_f $HOME
-    mv $in_f .$in_f
+    mv $HOME/$in_f $HOME/.$in_f
     rm -rf $in_f
     for i in ${dots[@]}
     do
