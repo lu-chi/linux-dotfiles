@@ -24,7 +24,7 @@ function backup() {
 function link_dots() {
     cp -r $in_f $HOME
     mv $HOME/$in_f $HOME/.$in_f
-    rm -rf $in_f
+#    rm -rf $in_f
     for i in ${dots[@]}
     do
         ln -s .$in_f/$i ~/.$i
